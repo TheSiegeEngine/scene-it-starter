@@ -45,6 +45,10 @@ function saveToWatchList(movieID){
 document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('search-form').addEventListener('submit',function(e){
         e.preventDefault();
-        document.getElementById("movies-list").innerHTML = renderMovies(movieData).join("");
+        var searchedMovie = document.getElementById('searchBox').value;
+        var urlSafeSearchedMovie = encodeURIComponent(searchedMovie);
+        axios.get(`http://www.omdbapi.com/?apikey=3430a78&s=${urlSafeSearchedMovie}`).then(function(response){
+            document.getElementById("movies-list").innerHTML = renderMovies(response.data.Search).join("");
+        });
     })
 });

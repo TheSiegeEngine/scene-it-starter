@@ -1,11 +1,7 @@
 var moviesList = document.getElementById('movies-list');
 var savedMovies = JSON.parse(localStorage.getItem('watchList'));
 
-console.log(savedMovies);
 function renderMovies(movieArray){
-    if(movieArray==null){
-        return `<div class="w-30 ht-100 bg-light h3 text-dark text-center mx-auto pt-2">No Movies In Watchlist</div>`
-    }
     return movieArray.map(function(movieInfo){
         return `
             <div class="movie w-30 mb-3">
@@ -22,5 +18,8 @@ function renderMovies(movieArray){
     });
 }
 
-
-moviesList.innerHTML = renderMovies(savedMovies).join('');
+    if(savedMovies==null){
+        moviesList.innerHTML = `<div class="w-30 ht-100 bg-light h3 text-dark text-center mx-auto pt-2">No Movies In Watchlist</div>`
+    } else {
+        moviesList.innerHTML = renderMovies(savedMovies).join('');
+    }
