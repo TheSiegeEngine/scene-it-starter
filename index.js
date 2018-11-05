@@ -30,11 +30,9 @@ function saveToWatchList(movieID){
     var movie = movieData.find(function(currentMovie){
         return currentMovie.imdbID == movieID;
     });
-    console.log(movie)
     var watchListJSON = localStorage.getItem('watchList');
 
     var watchList = JSON.parse(watchListJSON);
-    console.log(watchList);
     if (watchList == null){
         watchList = [];
     }
